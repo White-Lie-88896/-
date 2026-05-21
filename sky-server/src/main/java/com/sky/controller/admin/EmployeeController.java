@@ -104,4 +104,20 @@ public class EmployeeController {
         return Result.success();
     }
 
+    @ApiOperation("根据ID查员工信息")
+    @GetMapping("/{id}")
+    public Result<Employee> getById(@PathVariable Long id){
+        log.info("根据id查询员工信息：{}", id);
+        Employee employee = employeeService.getById(id);
+        return Result.success(employee);
+    }
+
+    @ApiOperation("编辑员工信息")
+    @PutMapping
+    public Result update(@RequestBody EmployeeDTO employeeDTO){
+        log.info("编辑员工信息：{}", employeeDTO);
+        employeeService.update(employeeDTO);
+        return Result.success();
+    }
+
 }
