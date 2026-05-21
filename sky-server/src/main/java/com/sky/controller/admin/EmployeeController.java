@@ -94,4 +94,14 @@ public class EmployeeController {
 
     }
 
+    @ApiOperation("启用或禁用员工账号")
+    @PostMapping("/status/{status}")
+    // 启用或禁用员工账号，方法名怎么起比较好？
+    public Result updateStatus(@PathVariable Integer status,Long id){
+        // status：1为启用，0为禁用
+        // 调用employeeService中的方法
+        employeeService.updateStatus(status,id);
+        return Result.success();
+    }
+
 }

@@ -101,4 +101,28 @@ EmployeeServiceImpl implements EmployeeService {
 
     }
 
+    @Override
+    public void updateStatus(Integer status, Long id) {
+        // 调用employeeMapper中的方法，根据id修改status
+
+        Employee employee = new Employee();
+        employee.setStatus(status);
+        employee.setId(id);
+//        // 根据id查出对应的employee实体所有属性出来
+//        Employee employee = employeeMapper.selectById(id);
+//        // 取出当前id对应实体的状态信息
+//        Integer OldStatus = employee.getStatus();
+//
+//        // 判断当前状态，设置新的状态
+//        if(OldStatus == StatusConstant.DISABLE){
+//            employee.setStatus(StatusConstant.ENABLE);
+//        }else{
+//            employee.setStatus(StatusConstant.DISABLE);
+//        }
+
+        // 直接传一个实体进去修改，是最好的方式，之后可以复用
+        employeeMapper.update(employee);
+    }
+
+
 }
