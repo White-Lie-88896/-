@@ -6,3 +6,16 @@ sky:
     database: sky_take_out
     username: sky_user
     password: 123456
+  oss:
+    endpoint: oss-cn-shenzhen.aliyuncs.com
+    access-key-id: LTAIXXXXXXXXXXXXXXXX # 阿里云 OSS access-key-id，开发时请替换为真实的 key
+    access-key-secret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # 阿里云 OSS access-key-secret，开发时请替换为真实的 secret
+    bucket-name: white6098
+  redis:
+    host: 192.168.11.7  # Redis 服务器地址，如果是本地就是 127.0.0.1
+    port: 6379       # Redis 端口号，默认为 6379
+    password: 123456 # 如果您的 Redis 设置了密码，请取消此行注释并填入密码
+    database: 0      # 使用的数据库索引，默认为 0
+  wechat:
+    appid: wxXXXXXXXXXXXXXXXX # 微信小程序的 appid，开发时请替换为真实的 appid
+    secret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # 微信小程序的 secret，开发时请替换为真实的 secret

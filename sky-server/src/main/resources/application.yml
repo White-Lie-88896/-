@@ -1,6 +1,8 @@
 server:
   port: 8080
 
+
+
 spring:
   profiles:
     active: dev
@@ -12,13 +14,20 @@ spring:
       url: jdbc:mysql://${sky.datasource.host}:${sky.datasource.port}/${sky.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
       username: ${sky.datasource.username}
       password: ${sky.datasource.password}
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  redis:
+    host: ${sky.redis.host}  # Redis 服务器地址，如果是本地就是 127.0.0.1
+    port: ${sky.redis.port}       # 引用自定义的 Redis 端口号
+    password: ${sky.redis.password} # 引用自定义的 Redis 密码
+    database: ${sky.redis.database}      # 使用的数据库索引，默认为 0
 
 mybatis:
-  #mapper配置文件
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.sky.entity
   configuration:
-    #开启驼峰命名
     map-underscore-to-camel-case: true
 
 logging:
@@ -31,9 +40,19 @@ logging:
 
 sky:
   jwt:
-    # 设置jwt签名加密时使用的秘钥
+    # 管理端员工生成jwt令牌相关配置
     admin-secret-key: itcast
-    # 设置jwt过期时间
     admin-ttl: 7200000
-    # 设置前端传递过来的令牌名称
     admin-token-name: token
+    # 用户端微信用户生成jwt令牌相关配置
+    user-secret-key: itheima
+    user-ttl: 72000000
+    user-token-name: authentication
+  wechat:
+    appid: ${sky.wechat.appid}
+    secret: ${sky.wechat.secret}
+  oss:
+    endpoint: ${sky.oss.endpoint}
+    access-key-id: ${sky.oss.access-key-id}
+    access-key-secret: ${sky.oss.access-key-secret}
+    bucket-name: ${sky.oss.bucket-name}
