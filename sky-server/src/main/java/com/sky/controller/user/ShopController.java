@@ -28,9 +28,17 @@ public class ShopController {
     @GetMapping("/status")
     @ApiOperation("获取店铺营业状态")
     public com.sky.result.Result<Integer> getStatus() {
-        Integer status = (Integer) redisTemplate.opsForValue().get(KEY);
-        // 如果状态为空，默认设置为打烊（0）
-        log.info("用户端获取店铺营业状态为：{}", (status != null && status == 1) ? "营业中" : "打烊中");
+        Integer status = null;
+        try {
+            status = (Integer) redisTemplate.opsForValue().get(KEY);
+        } catch (Exception e) {
+            log.warn("用户端读取店铺状态发生反序列化异常，正在清理旧Key并默认重置为打烊状态: {}", e.getMessage());
+            redisTemplate.delete(KEY);
+        }
+        if (status == null) {
+            status = 0;
+        }
+        log.info("用户端获取店铺营业状态为：{}", status == 1 ? "营业中" : "打烊中");
         return Result.success(status);
     }
 

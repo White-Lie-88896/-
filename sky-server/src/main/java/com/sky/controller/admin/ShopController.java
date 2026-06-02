@@ -32,7 +32,16 @@ public class ShopController {
     @GetMapping("/status")
     @ApiOperation("获取店铺营业状态")
     public Result<Integer> getStatus() {
-        Integer status = (Integer) redisTemplate.opsForValue().get(KEY);
+        Integer status = null;
+        try {
+            status = (Integer) redisTemplate.opsForValue().get(KEY);
+        } catch (Exception e) {
+            log.warn("读取店铺状态发生反序列化异常（可能由于Redis中存有旧的JDK序列化脏数据），正在清理旧Key并默认重置为打烊状态: {}", e.getMessage());
+            redisTemplate.delete(KEY);
+        }
+        if (status == null) {
+            status = 0;
+        }
         log.info("获取店铺营业状态为：{}", status == 1 ? "营业中" : "打烊中");
         return Result.success(status);
     }
