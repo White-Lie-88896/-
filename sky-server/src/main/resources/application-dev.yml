@@ -10,6 +10,7 @@ sky:
     endpoint: oss-cn-shenzhen.aliyuncs.com
     access-key-id: LTAIXXXXXXXXXXXXXXXX
     access-key-secret: fqXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
     bucket-name: white6098
   redis:
     host: 192.168.11.7  # Redis 服务器地址，如果是本地就是 127.0.0.1
@@ -19,3 +20,4 @@ sky:
   wechat:
     appid: wxXXXXXXXXXXXXXXXX # 微信小程序的 appid，开发时请替换为真实的 appid
     secret: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX # 微信小程序的 secret，开发时请替换为真实的 secret
+

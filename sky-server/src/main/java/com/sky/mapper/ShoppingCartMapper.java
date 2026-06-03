@@ -40,6 +40,15 @@ public interface ShoppingCartMapper {
      * 根据id删除购物车单条商品记录
      * @param id
      */
-    @Delete("delete from shopping_cart where id = #{id}")
+    @org.apache.ibatis.annotations.Delete("delete from shopping_cart where id = #{id}")
     void deleteById(Long id);
+
+    /**
+     * 批量插入购物车数据
+     *
+     * @param shoppingCartList
+     */
+    void insertBatch(@org.apache.ibatis.annotations.Param("shoppingCartList") List<ShoppingCart> shoppingCartList);
 }
+
+

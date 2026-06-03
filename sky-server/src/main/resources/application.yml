@@ -56,3 +56,8 @@ sky:
     access-key-id: ${sky.oss.access-key-id}
     access-key-secret: ${sky.oss.access-key-secret}
     bucket-name: ${sky.oss.bucket-name}
+  shop:
+    address: 北京市海淀区上地十街10号
+  baidu:
+    ak: default
+
